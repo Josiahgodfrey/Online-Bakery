@@ -1,0 +1,5 @@
+joh | god | 0
+josiah | 12345 | 1000000
+josiah | 12345 | 1000
+jog | jod | 1000000
+joh | god | 0
