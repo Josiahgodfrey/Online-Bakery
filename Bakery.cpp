@@ -78,3 +78,16 @@ public:
         file << product << " | " << quantity << " | " << amount << " | " << balance << endl;
     }
 };
+
+
+class Loaf : public Bakery {
+public:
+    Loaf(int water, int flour, int oil)
+        : Bakery(water, flour, oil) {}
+
+    void commonIngredient() const override {
+            std::cout << "Common ingredients for Loaf: Water: " << water 
+             << ", Flour: " << flour << ", Oil: " << oil << endl;
+    }
+
+};
