@@ -300,17 +300,38 @@ class Kababu : public Bakery{
              << ", Flour: " << flour << ", Oil: " << oil << endl;
     } 
 
-void buyKababu(int noOfKababu, userAccount &balance) {
-    int amount = 700;
-    std::cout << "Enter the number of  Kababu do you want to buy:" << endl;
-    std::cin >> noOfKababu; 
+    void buyKababu(int noOfKababu, userAccount &balance) {
+        int amount = 700;
+        std::cout << "Enter the number of  Kababu do you want to buy:" << endl;
+        std::cin >> noOfKababu; 
 
-    int total = noOfKababu * amount;
-    std::cout << noOfKababu << " Kababu cost: " << total << endl;
-    std::cout << "Confirm the payment please (1 for yes, 0 for no): ";
-    int option;
-    std::cin >> option;
+        int total = noOfKababu * amount;
+        std::cout << noOfKababu << " Kababu cost: " << total << endl;
+        std::cout << "Confirm the payment please (1 for yes, 0 for no): ";
+        int option;
+        std::cin >> option;
 
+        switch (option) {
+            case 0:
+                std::cout << "Payment cancelled." << endl;
+                break;
+            case 1:
+                if (balance.balance >= total) {
+                    balance.balance -= total;
+                    std::cout << "Payment successful! Your new balance is: " << balance.balance << ".Tsh" << endl;
+
+                    //recording the transaction
+                        balance.recordTransaction("Kababu", noOfKababu, amount);
+                } else {
+                    std::cout << "Insufficient funds. Please refund your account, and Thanks!." << endl;
+                    std::cout << "****************************************************************" << endl;
+                }
+                break;
+            default:
+                std::cout << "Invalid option. Please try again." << endl;
+                std::cout << "****************************************************************" << endl;
+
+        }
     }
 
 };
