@@ -282,5 +282,35 @@ void buyChapati(int noOfChapati, userAccount &balance) {
 
         }
     }
+};
+
+
+class Kababu : public Bakery{
+    private:
+        int meat;
+        int eggs;
+        int salt;
+        
+    public:
+        Kababu(int &water, int &flour, int &oil, int meat, int salt, int eggs)
+        :Bakery(water, flour, oil), meat(meat), salt(salt), eggs(eggs) {}
+
+    void commonIngredient() const override {
+        std::cout << "Common ingredients for Loaf: Water: " << water 
+             << ", Flour: " << flour << ", Oil: " << oil << endl;
+    } 
+
+void buyKababu(int noOfKababu, userAccount &balance) {
+    int amount = 700;
+    std::cout << "Enter the number of  Kababu do you want to buy:" << endl;
+    std::cin >> noOfKababu; 
+
+    int total = noOfKababu * amount;
+    std::cout << noOfKababu << " Kababu cost: " << total << endl;
+    std::cout << "Confirm the payment please (1 for yes, 0 for no): ";
+    int option;
+    std::cin >> option;
+
+    }
 
 };
