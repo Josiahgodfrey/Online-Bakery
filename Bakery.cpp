@@ -39,4 +39,42 @@ public:
         return hashedPassword;
     }
 
+    // Load account information from the filesystem
+    vector<userAccount> load() {
+        vector<userAccount> accounts;
+        ifstream file("/home/josiah/Documents/C++ DEV/ONLINE-BAKERY/Accounts/");
+        if (!file.is_open()) {
+            return accounts;
+        }
+
+        string line;
+        while (getline(file, line)) {
+            stringstream ss(line);
+            userAccount account;
+            getline(ss, account.name, '|');
+            getline(ss, account.password, '|');
+            ss >> account.balance;
+            accounts.push_back(account);
+        }
+
+        return accounts;
+    }
+
+    // Save account information to a file
+    void save() {
+        ofstream file("/home/josiah/Documents/C++ DEV/ONLINE-BAKERY/Accounts/" + name + ".txt", ios::app);
+        if (!file.is_open()) {
+            throw runtime_error("Failed to open account file for writing");
+        }
+        file << name << " | " << hashPassword(password) << " | " << balance << endl;
+    }
+
+    // Record transaction history
+    void recordTransaction(const string& product, int quantity, int amount) {
+        ofstream file("/home/josiah/Documents/C++ DEV/ONLINE-BAKERY/Transactions/" + name + ".txt", ios::app);
+        if (!file.is_open()) {
+            throw runtime_error("Failed to open transaction file for writing");
+        }
+        file << product << " | " << quantity << " | " << amount << " | " << balance << endl;
+    }
 };
