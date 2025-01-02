@@ -126,3 +126,21 @@ public:
         }
     }
 };
+
+class Cake: public Bakery {
+    private:
+        int chocoPowder;
+        int eggs;
+        double prestige;
+
+    public:
+        Cake(int &water, int &flour, int &oil, int chocoPowder, int eggs, double prestige)
+        :Bakery(water,flour, oil), chocoPowder(chocoPowder), eggs(eggs), prestige(prestige) {}
+
+    void commonIngredient() const override {
+        std::cout << "Common ingredients for Loaf: Water: " << water 
+             << ", Flour: " << flour << ", Oil: " << oil << endl;
+    }    
+
+
+};
