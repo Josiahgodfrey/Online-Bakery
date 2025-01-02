@@ -429,6 +429,88 @@ while (true)
 
 
 
+    //continue with the program after authentiaction
+    std::cout << "Welcome ot the Bakety. Choose a product to buy:"<< endl;
+    std::cout << "//////////////// ******************** ////////////////////" << endl << endl;
+
+    std::cout << "HELLO "<< userCredentials.name << " Your current Balance is 0.Tsh, so you have to refund your account! " << endl;
+    std::cout << "In the list below choose (Account-Details) for refunding your account" << endl;
+        
+    //Customer options: ****************
+    int productChoice;
+    std::cout << "Enter your choice (1-5):" << endl;
+    std::cout << "o. Acount-Details" << endl;
+    std::cout << "1. Loaf" << endl;
+    std::cout << "2. Cake" << endl;
+    std::cout << "3. Mandazi" << endl;
+    std::cout << "4. Chapati" << endl;
+    std::cout << "5. Kababu" << endl;
+
+    //input for the productChoice
+    std::cin >> productChoice;
+
+    //code form sales management
+    switch (productChoice) {
+        case 0: {
+            //Displaying Current account information
+            std::cout << "Current Account Information:" << endl;
+            std::cout << "Username: " << userCredentials.name << endl;
+            std::cout << "Password: " << userCredentials.password << endl;
+            std::cout << "Balance: " << userCredentials.balance << " Tsh" << endl;
+
+            // Prompt the user to enter new information
+            string newName, newPassword;
+            int balance;
+
+            std::cout << "Enter new username (leave blank to keep unchanged): ";
+            std::cin >> newName;
+            if(!newName.empty()) {
+                userCredentials.name = newName;
+            }
+
+            std::cout << "Enter new password (leave blank to keep unchanged): ";
+            std::cin >> newPassword;
+            if(!newPassword.empty()) {
+                userCredentials.password = newPassword;
+            }
+
+            std::cout << "Enter new account balance (leave blank to keep unchanged): ";
+            std::cin >> balance;
+            if(balance >= 0) {
+                userCredentials.balance = balance;
+            }
+
+            // save the updated account credentials
+            userCredentials.save();
+
+            std::cout << "You have successfully edited your account credentials!" << endl;
+
+            break;
+        }
+        case 1: {
+            Loaf loaf(totalWater, totalFlour, totalOil);
+            loaf.commonIngredient();
+            int noOfLoaf = 0;
+            loaf.buyLoaf(noOfLoaf, userCredentials);
+            break;
+        }
+        case 2: {
+            Cake cake(totalWater, totalFlour, totalOil, 1458, 47, 7465);
+            cake.commonIngredient();
+            int noOfCake = 0;
+            cake.buyCake(noOfCake, userCredentials);
+            break;
+        }
+        case 3: {
+            Mandazi mandazi(totalWater, totalFlour, totalOil, 1200, 10);
+            mandazi.commonIngredient();
+            int noOfMandazi = 0;
+            mandazi.buyMandazi(noOfMandazi, userCredentials);
+            break;
+        }
+
+    }
+
 }
      
  return 0;
