@@ -508,6 +508,23 @@ while (true)
             mandazi.buyMandazi(noOfMandazi, userCredentials);
             break;
         }
+        case 4: {
+            Chapati chapati(totalWater, totalFlour, totalOil, 1000, 5890, 2500);
+            chapati.commonIngredient();
+            int noOfChapati = 0;
+            chapati.buyChapati(noOfChapati, userCredentials);
+        }
+        case 5: {
+            Kababu kababu(totalWater, totalFlour, totalOil, 2500, 100, 1500);
+            kababu.commonIngredient();
+            int noOfKababu = 0;
+            kababu.buyKababu(noOfKababu, userCredentials);
+            break;
+        }
+        default: {
+            std::cout << "Invalid choice. Please try again." << endl;
+            continue;   //continue loop for prompting the user for a valid choice
+        }
 
     }
 
