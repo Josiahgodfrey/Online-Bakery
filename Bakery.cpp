@@ -193,4 +193,40 @@ class Mandazi : public Bakery {
         std::cout << "Common ingredients for Loaf: Water: " << water 
              << ", Flour: " << flour << ", Oil: " << oil << endl;
     }  
+
+    void buyMandazi(int noOfMandazi, userAccount &balance) {
+        std::cout << "Enter the number of Mandazi you want to buy: ";
+        std::cin >> noOfMandazi;
+
+        int amount = 1000;
+        int total = noOfMandazi * amount;
+
+        std::cout << noOfMandazi << " Mandazi cost: " << total << endl;
+        std::cout << "Confirm the payment please (1 for yes, 0 for no): ";
+        int option;
+        std::cin >> option;
+
+        switch (option) {
+            case 0:
+                std::cout << "Payment cancelled." << endl;
+                break;
+            case 1:
+                if (balance.balance >= total) {
+                    balance.balance -= total;
+                    std::cout << "Payment successful. Your new balance is: " << balance.balance << ".Tsh" << endl;
+
+                    //recording the transaction
+                    balance.recordTransaction("Mandazi", noOfMandazi, amount);
+                } else {
+                    std::cout << "Insufficient funds. Please add more money to your account." << endl;
+                    std::cout << "****************************************************************" << endl;
+
+                }
+                break;
+            default:
+                std::cout << "Invalid option. Please try again." << endl;
+                std::cout << "****************************************************************" << endl;
+
+        }
+    }
 };
