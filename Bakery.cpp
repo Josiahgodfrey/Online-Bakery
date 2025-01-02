@@ -143,4 +143,39 @@ class Cake: public Bakery {
     }    
 
 
+    void buyCake(int noOfCake, userAccount &balance) {
+        int amount = 2000;
+        int option;
+
+        std::cout << "Enter the number of cakes you want to buy: " << endl;
+        std::cin >> noOfCake;
+        int total = noOfCake * amount;        
+        
+        std::cout << noOfCake << " Cakes cost: " << total << endl;
+        std::cout << "Confirm the payment please (1 for yes, 0 for no): " << endl;
+        std::cin >> option;
+
+        switch (option) {
+            case 0:
+                std::cout << "Payment cancelled." << endl;
+                break;
+            case 1:
+                if (balance.balance >= total) {
+                    balance.balance -= total;
+                    std::cout << "Payment successful. Your new balance is: " << balance.balance << ".Tsh" << endl;
+
+                    //recording the transaction
+                    balance.recordTransaction("Cake", noOfCake, amount);
+                } else {
+                    std::cout << "Insufficient funds. Please add more money to your account." << endl;
+                    std::cout << "****************************************************************" << endl;
+
+                }
+                break;
+            default:
+                std::cout << "Invalid option. Please try again." << endl;
+                std::cout << "****************************************************************" << endl;
+
+        }
+    }
 };
