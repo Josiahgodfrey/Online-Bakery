@@ -230,3 +230,35 @@ class Mandazi : public Bakery {
         }
     }
 };
+
+
+class Chapati : public Bakery {
+    private:
+        int milk;
+        int salt;
+        int eggs;
+
+    public:
+        Chapati(int &water, int &flour, int &oil, int milk, int salt, int eggs)
+        :Bakery(water, flour, oil), milk(milk), salt(salt), eggs(eggs) {}
+    
+    void commonIngredient() const override {
+        std::cout << "Common ingredients for Loaf: Water: " << water 
+             << ", Flour: " << flour << ", Oil: " << oil << endl;
+    }
+
+void buyChapati(int noOfChapati, userAccount &balance) {
+    int amount = 500;
+    std::cout << "Enter the number of  Chapati do you want to buy:" << endl;
+    std::cin >> noOfChapati; 
+
+    int total = noOfChapati * amount;
+    std::cout << noOfChapati << " Chapati cost: " << total << endl;
+    std::cout << "Confirm the payment please (1 for yes, 0 for no): ";
+    int option;
+    std::cin >> option;
+
+    
+    }
+
+};
