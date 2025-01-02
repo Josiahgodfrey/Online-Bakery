@@ -371,6 +371,64 @@ while (true)
         std::cout << "Enter your choice (1-3):" << endl;
         std::cin >> choice;  //Read User input
 
+        //handle user choice
+        switch (choice) {
+            case 1: {    //login option
+                std::cout << "Fill the Login Menu..." << endl << endl;
+
+                // Load account information from the filesystem
+                vector<userAccount> accounts = userCredentials.load();
+
+                string inputName, inputPassword;
+                std::cout << "Enter your username: ";
+                std::cin >> inputName;
+                std::cout << "Enter your password: ";
+                std::cin >> inputPassword;
+
+                // Validate username and password
+                for (const auto& account : accounts) {
+                    if (inputName == account.name && inputPassword == account.password) {
+                        std::cout << "You logged in successfully as " << account.name << endl;
+                        userCredentials = account;  // Assign the logged-in user's credentials
+                        break;
+                    }
+                }
+
+                if (userCredentials.name.empty()) {
+                    std::cout << "Invalid username or password. Please try again." << endl;
+                    continue;   // prompting the user for a valid choice
+                }
+
+                break;
+            }
+
+            case 2: { 
+                // Creating a new user account and save it to the filesystem
+                std::cout << "Fill the Signup Menu..." << endl << endl;
+                userAccount newUser;
+                std::cout << "Enter your username: ";
+                std::cin >> newUser.name;
+                std::cout << "Enter your password: ";
+                std::cin >> newUser.password;
+
+                // create a directory for the new user
+                newUser.save();
+                break;
+             }
+
+             case 3: {
+                std::cout << "Exiting the program..." << endl;
+                return 0;   //Exiting the program
+             }
+
+             default: {
+                std::cout << "Invalid choice. Please try again." << endl;
+                continue;
+             }
+        } 
+
+
+
 }
      
  return 0;
