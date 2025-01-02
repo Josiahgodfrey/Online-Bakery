@@ -90,4 +90,39 @@ public:
              << ", Flour: " << flour << ", Oil: " << oil << endl;
     }
 
+    void buyLoaf(int &noOfLoaf, userAccount &balance) {
+        int amount = 1500;
+        std::cout << "Enter the number of loaves you want to buy: ";
+        std::cin >> noOfLoaf;
+
+        int total = noOfLoaf * amount;
+        std::cout << noOfLoaf << " loaves cost: " << total << endl;
+        std::cout << "Confirm the payment please: ";
+        std::cout << "Confirm the payment please (1 for yes, 0 for no):";
+        int option;
+        std::cin >> option;
+
+        switch (option) {
+            case 0:
+                std::cout << "Payment cancelled." << endl;
+                break;
+            case 1:
+                if (balance.balance >= total) {
+                    balance.balance -= total;
+                    std::cout << "Payment successful. Your new balance is: " << balance.balance << " Tsh" << endl;
+
+                    //recording the transaction
+                    balance.recordTransaction("Loaf", noOfLoaf, amount);
+                } else {
+                    std::cout << "Insufficient funds. Please add more money to your account." << endl;
+                    std::cout << "****************************************************************" << endl;
+
+                }
+                break;
+            default:
+                std::cout << "Invalid option. Please try again." << endl;
+                std::cout << "****************************************************************" << endl;
+
+        }
+    }
 };
