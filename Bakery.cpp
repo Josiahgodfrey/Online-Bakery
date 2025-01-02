@@ -335,3 +335,43 @@ class Kababu : public Bakery{
     }
 
 };
+
+
+
+
+int main() { 
+
+while (true)
+{
+
+    //Object for user authentications
+    userAccount userCredentials;           
+    
+    //Load account information from the filesystem
+    vector<userAccount> accounts = userCredentials.load();
+    
+    //Total amount of engredients in the bakery
+    int totalWater = 18540755;
+    int totalFlour = 39579489;
+    int totalOil = 49539345;
+    std::cout << "WELCOME TO MEREOLONE BAKERY" << endl << endl;
+    std::cout << "Choose one of the Options by Numbers below to continue..." << endl;
+
+    //Array of entry options
+    string entryOptions[3] = {"Login", "Signup", "Exit the program"};
+
+    int choice; //variable to store the choices
+
+        std::cout << "Choose one of the Options by Numbers to continue..." << endl;
+
+        for (int x = 0; x < 3; x++) {
+            std::cout << x + 1 << ". " << entryOptions[x] << endl; //Display Options
+        }
+
+        std::cout << "Enter your choice (1-3):" << endl;
+        std::cin >> choice;  //Read User input
+
+}
+     
+ return 0;
+}
