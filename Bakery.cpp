@@ -258,7 +258,29 @@ void buyChapati(int noOfChapati, userAccount &balance) {
     int option;
     std::cin >> option;
 
-    
+
+    switch (option) {
+        case 0:
+            std::cout << "Payment cancelled." << endl;
+            break;
+        case 1:
+            if (balance.balance >= total) {
+                balance.balance -= total;
+                std::cout << "Payment successful. Your new balance is: " << balance.balance << ".Tsh" << endl;
+
+                //recording the transaction
+                    balance.recordTransaction("Chapati", noOfChapati, amount);
+            } else {
+                std::cout << "Insufficient funds. Please add more money to your account." << endl;
+                std::cout << "****************************************************************" << endl;
+
+            }
+            break;
+        default:
+            std::cout << "Invalid option. Please try again." << endl;
+            std::cout << "****************************************************************" << endl;
+
+        }
     }
 
 };
